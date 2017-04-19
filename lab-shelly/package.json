@@ -1,0 +1,25 @@
+{
+  "name": "lab-shelly",
+  "version": "1.0.0",
+  "description": "lab 03 using file system module",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "chai": "^3.5.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "fs",
+    "file",
+    "system"
+  ],
+  "author": "shelly",
+  "license": "ISC"
+}
