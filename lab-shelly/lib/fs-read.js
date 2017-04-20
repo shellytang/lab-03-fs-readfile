@@ -25,6 +25,7 @@ exports.readInOrder = function(files, callback) {
         let fileThreeData = data.toString('hex',0,8);
         results.push(fileThreeData);
 
+//callback takes error and results paramenter
         return callback(null, results);
       });
     });
