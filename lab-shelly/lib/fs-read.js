@@ -2,20 +2,45 @@
 
 const fs = require('fs');
 
-fs.readFile(`${__dirname}/../data/one.txt`, function(err, data) {
-  if(err) throw err;
-  console.log(data);
-  console.log('one.txt first eight: ' + data.toString('hex',0,8));
-});
+module.exports = exports = {};
 
-fs.readFile(`${__dirname}/../data/two.txt`, function(err, data) {
-  if(err) throw err;
-  console.log(data);
-  console.log('two.txt first eight: ' + data.toString('hex',0,8));
-});
+exports.fileArray = [`${__dirname}/../data/one.txt`,`${__dirname}/../data/two.txt`,`${__dirname}/../data/three.txt`];
 
-fs.readFile(`${__dirname}/../data/three.txt`, function(err, data) {
-  if(err) throw err;
-  console.log(data);
-  console.log('three.txt first eight: ' + data.toString('hex',0,8));
-});
+exports.readInOrder = function(files, callback) {
+
+  let results = [];
+
+  fs.readFile(files[0], function(err, data) {
+    if(err) throw callback(err);
+    let fileOneData = data.toString('hex',0,8);
+    results.push(fileOneData);
+
+
+    fs.readFile(files[1], function(err, data) {
+      if(err) throw callback(err);
+      let fileTwoData = data.toString('hex',0,8);
+      results.push(fileTwoData);
+
+
+      fs.readFile(files[2], function(err, data) {
+        if(err) throw callback(err);
+        let fileThreeData = data.toString('hex',0,8);
+        results.push(fileThreeData);
+      
+        return callback(null, results);
+      });
+    });
+  });
+};
+
+//
+// function someFunction(callback) {
+//   //read all these files and get the data to send out
+//   callback('i am some data!');
+// }
+//
+// function someCallback(data) {
+//   console.log('these is the data of the three files in order: ', data);
+// }
+//
+// someFunction(someCallback);
