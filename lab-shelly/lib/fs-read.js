@@ -8,7 +8,7 @@ exports.fileArray = [`${__dirname}/../data/one.txt`,`${__dirname}/../data/two.tx
 
 exports.readInOrder = function(files, callback) {
 
-  let results = []
+  let results = [];
 
   fs.readFile(files[0], function(err, data) {
     if(err) throw callback(err);
